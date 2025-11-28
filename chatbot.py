@@ -9,7 +9,7 @@ from langchain_community.llms import Ollama
 
 #Connect to DB
 db = SQLDatabase.from_uri(
-    
+        "mysql+mysqlconnector://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE"
 )
 
 # Choose LLM
@@ -58,7 +58,7 @@ import time
 
 # Connect to DB
 db = SQLDatabase.from_uri(
-
+        "mysql+mysqlconnector://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE"
 )
 
 # Choose LLM with only valid parameters
@@ -121,3 +121,4 @@ while True:
     except Exception as e:
 
         print(f"Error: {e}\n")
+
