@@ -9,7 +9,7 @@ from langchain_community.llms import Ollama
 
 #Connect to DB
 db = SQLDatabase.from_uri(
-    "mysql+mysqlconnector://prisonweb:CU[wIc0SKtwIKuUC@164.164.122.101:3306/prisonwebstagging"
+    
 )
 
 # Choose LLM
@@ -28,9 +28,6 @@ sql_agent = create_sql_agent(
 )
 
 parsed_agent = sql_agent | StrOutputParser()
-# Run query
-#result = sql_agent.invoke("List all jail types in the jail_types table?")
-#print(result)
 
 print("\nSQL Chatbot Ready. Type 'exit' to quit.\n")
 
@@ -61,7 +58,7 @@ import time
 
 # Connect to DB
 db = SQLDatabase.from_uri(
-    "mysql+mysqlconnector://prisonweb:CU[wIc0SKtwIKuUC@164.164.122.101:3306/prisonwebstagging"
+
 )
 
 # Choose LLM with only valid parameters
@@ -122,4 +119,5 @@ while True:
         print(f"Response time: {end_time - start_time:.2f} seconds\n")
         
     except Exception as e:
+
         print(f"Error: {e}\n")
