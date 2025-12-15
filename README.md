@@ -21,7 +21,7 @@ The core components are:
 
 *   Python 3.8+
 *   [Ollama](https://ollama.com/) installed and running on your local machine.
-*   The `mistral` model available in Ollama. You can pull it by running: (or you can prefer your owm model and pull)
+*   The `mistral` model available in Ollama. You can pull it by running: (or you can prefer your own model and pull)
     ```sh
     ollama run mistral (or your own LLM model)
     ```
