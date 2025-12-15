@@ -21,7 +21,7 @@ The core components are:
 
 *   Python 3.8+
 *   [Ollama](https://ollama.com/) installed and running on your local machine.
-*   The `mistral` model available in Ollama. You can pull it by running:
+*   The `mistral` model available in Ollama. You can pull it by running: (or you can prefer your owm model and pull)
     ```sh
     ollama run mistral (or your own LLM model)
     ```
@@ -68,7 +68,7 @@ The script is set up to run the optimized agent (Approach 2) by default. To see 
 
     You: Your Question?
 
-    Answer: Anxwer
+    Answer: Answer
     Response time: 5.83 seconds (Time taken to generate the answer)
 
     You: exit
