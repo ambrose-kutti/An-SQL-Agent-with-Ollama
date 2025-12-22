@@ -19,11 +19,11 @@ The core components are:
 
 ## Prerequisites
 
-*   Python 3.8+
+*   Python 3.8 and more
 *   [Ollama](https://ollama.com/) installed and running on your local machine.
 *   The `mistral` model available in Ollama. You can pull it by running: (or you can prefer your own model and pull)
     ```sh
-    ollama run mistral (or your own LLM model)
+    ollama run mistral (or your own LLM model of choice)
     ```
 *   Access to a MySQL database.
 
@@ -47,7 +47,7 @@ The core components are:
     # Connect to DB
     db = SQLDatabase.from_uri(
         "mysql+mysqlconnector://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE"
-    )
+    ) (here I have used PhpMyAdmin to store MySQL Data)
     ```
 
 ## Usage
@@ -68,8 +68,8 @@ The script is set up to run the optimized agent (Approach 2) by default. To see 
 
     You: Your Question?
 
-    Answer: Answer
+    Answer: Answer (the model generate the Answer)
     Response time: 5.83 seconds (Time taken to generate the answer)
 
     You: exit
-    Goodbye!
+    Goodbye! (chat ends)
