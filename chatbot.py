@@ -1,4 +1,6 @@
+#=============================================================
 #APPROACH -1 WITH SQL QUERY, REFERENCES, RETRIEVAL AND ANSWER
+#=============================================================
 
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain.agents import create_sql_agent
@@ -11,12 +13,8 @@ from langchain_community.llms import Ollama
 db = SQLDatabase.from_uri(
         "mysql+mysqlconnector://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE"
 )
-
-# Choose LLM
-llm = Ollama(model="mistral", temperature=0.1)
-
-# Build toolkit
-toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+llm = Ollama(model="mistral", temperature=0.1)        # Choose LLM
+toolkit = SQLDatabaseToolkit(db=db, llm=llm)        # Build toolkit
 
 # Create agent
 sql_agent = create_sql_agent(
@@ -26,11 +24,8 @@ sql_agent = create_sql_agent(
     agent_type="zero-shot-react-description",
     handle_parsing_errors=True
 )
-
 parsed_agent = sql_agent | StrOutputParser()
-
 print("\nSQL Chatbot Ready. Type 'exit' to quit.\n")
-
 while True:
     question = input(" Ask: ").strip()
     if question.lower() in {"exit", "quit"}:
@@ -38,16 +33,15 @@ while True:
         break
     if not question:
         continue
-
     try:
         result = sql_agent.invoke(question)
         print(f" Answer: {result}\n")
     except Exception as e:
         print(f" Error: {e}\n")
 
-#=========================*******************=============================
-
+#==========================================================
 #APPROACH -2 DIRECT RETRIEVAL AND ANSWER WITH TIME LOGGING
+#==========================================================
 
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain.agents import create_sql_agent
@@ -67,9 +61,7 @@ llm = Ollama(
     temperature=0.1
     # Remove invalid parameters: num_predict, num_thread, top_k, top_p
 )
-
-# Build toolkit
-toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+toolkit = SQLDatabaseToolkit(db=db, llm=llm)        # Build toolkit
 
 # Create agent with optimized parameters
 sql_agent = create_sql_agent(
@@ -93,9 +85,7 @@ def clean_output_parser(result):
             return result.split("Final Answer:")[-1].strip()
         return result
     return str(result)
-
 print("\nSQL Chatbot Ready. Type 'exit' to quit.\n")
-
 while True:
     question = input("You: ").strip()
     if question.lower() in {"exit", "quit", "bye"}:
@@ -103,22 +93,12 @@ while True:
         break
     if not question:
         continue
-
     try:
         start_time = time.time()
-        
-        # Get response
-        result = sql_agent.invoke({"input": question})
-        
-        # Clean the output
-        clean_answer = clean_output_parser(result)
-        
+        result = sql_agent.invoke({"input": question})        # Get response
+        clean_answer = clean_output_parser(result)        # Clean the output
         end_time = time.time()
-        
         print(f"\nAnswer: {clean_answer}")
         print(f"Response time: {end_time - start_time:.2f} seconds\n")
-        
     except Exception as e:
-
         print(f"Error: {e}\n")
-
