@@ -1,6 +1,5 @@
 # An SQL Agent with Ollama
 
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/ambrose-kutti/An-SQL-Agent-with-Ollama)
 
 This repository provides a Python script that creates a conversational SQL agent using LangChain and a locally hosted LLM via Ollama. The agent can understand natural language questions, convert them into SQL queries, execute them against a MySQL database, and return the answers.
 
