@@ -14,7 +14,7 @@ db = SQLDatabase.from_uri(
         "mysql+mysqlconnector://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE"
 )
 llm = Ollama(model="mistral", temperature=0.1)        # Choose LLM
-toolkit = SQLDatabaseToolkit(db=db, llm=llm)        # Build toolkit
+toolkit = SQLDatabaseToolkit(db=db, llm=llm)          # Build toolkit
 
 # Create agent
 sql_agent = create_sql_agent(
@@ -59,7 +59,6 @@ db = SQLDatabase.from_uri(
 llm = Ollama(
     model="mistral", 
     temperature=0.1
-    # Remove invalid parameters: num_predict, num_thread, top_k, top_p
 )
 toolkit = SQLDatabaseToolkit(db=db, llm=llm)        # Build toolkit
 
@@ -67,10 +66,10 @@ toolkit = SQLDatabaseToolkit(db=db, llm=llm)        # Build toolkit
 sql_agent = create_sql_agent(
     llm=llm,
     toolkit=toolkit,
-    verbose=False,  # Turn off verbose to reduce output
+    verbose=False,                                  # Turn off verbose to reduce output
     agent_type="zero-shot-react-description",
     handle_parsing_errors=True,
-    max_iterations=5,  # Limit iterations for speed
+    max_iterations=5,                               # Limit iterations for speed
     early_stopping_method="force"
 )
 
@@ -96,7 +95,7 @@ while True:
     try:
         start_time = time.time()
         result = sql_agent.invoke({"input": question})        # Get response
-        clean_answer = clean_output_parser(result)        # Clean the output
+        clean_answer = clean_output_parser(result)            # Clean the output
         end_time = time.time()
         print(f"\nAnswer: {clean_answer}")
         print(f"Response time: {end_time - start_time:.2f} seconds\n")
